@@ -5,8 +5,15 @@ let theList = document.querySelector("#listRest");
 let restaurant;
 let restaurantArray = []; // currently not being used
 let newArray = []; // currently not being used
+let searchButton = document.getElementById("searchButton");
 
+searchButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    userZip = $("#findlocate").val()
+    getRestaurantsNearMe();
+    console.log(userZip)
 
+})
 
 function getUserLocation () {
     let abstractUrl = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`
@@ -30,7 +37,7 @@ function getRestaurantsNearMe () {
     let proxy = "https://ben.hutchins.co/proxy/fetch/"
     let restaurantUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restuarants+in+${userZip}&key=${googleApi}&`;
 
-   
+
 
     fetch(`${proxy}${restaurantUrl}`)
         .then(function (response) {
@@ -40,6 +47,8 @@ function getRestaurantsNearMe () {
         .then (function (data) {
             console.log(data)
             
+            $("#listRest").empty();
+
             for (let i = 0; i < data.results.length; i++) {
 
                 /* with using the forloop that was already created.   I added the if statement so to 
@@ -47,7 +56,9 @@ function getRestaurantsNearMe () {
                 crash when the business is not operational.  opening_hours.open_now doesnt exist on the close 
                 businesses.*/
                 if(data.results[i].business_status === "OPERATIONAL") {
-                
+
+                    
+                    
                     // this block here creates the li and  attaches to the empty <ul> in the html.
                     let listElement = document.createElement('li');
                     listElement.classList.add("list-group-item")
