@@ -10,6 +10,7 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+          
 }
 
 .hero-search-filter-logo {
@@ -121,13 +122,15 @@
   border-radius: 0;
   background: #fefefe;
   box-shadow: none;
+  color: #0a0a0a;
   width: 50%;
   overflow: scroll;
-  color: #0a0a0a;
 }
+
 
 li{
   list-style: none;
+  
   
 }
 
@@ -141,6 +144,7 @@ li{
   width: 50%;
   padding: 1rem;
   border-bottom: 1px solid #e6e6e6;
+  
 }
 
  .list-group-item > :last-child {
@@ -151,5 +155,6 @@ li{
 .list-group-item:hover, .list-group-item:focus {
   background-color: #e6e6e6;
 }
+
 
 
