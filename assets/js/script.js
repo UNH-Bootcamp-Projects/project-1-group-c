@@ -1,7 +1,7 @@
 let apiKey = "5c51a06114504d42a38134910bd6bd9a";
 let googleApi = "AIzaSyClKhFXOi6w6MwKpiSsIlmAEtkTnd9132s";
 let userZip;
-let theList = document.querySelector("#testTwo");
+let theList = document.querySelector("#listRest");
 let restaurant;
 let restaurantArray = []; // currently not being used
 let newArray = []; // currently not being used
@@ -50,9 +50,12 @@ function getRestaurantsNearMe () {
                 
                     // this block here creates the li and  attaches to the empty <ul> in the html.
                     let listElement = document.createElement('li');
-                    listElement.classList.add("listElementClass");
+                    listElement.classList.add("list-group-item")
+                    // listElement.classList.add("listElementClass");
                     listElement.id = "list" + i;
                     theList.appendChild(listElement);  
+
+                    
     
                 //   this block here is what creates a dynamic ul and attaches it to the dynamic li
                     let newList = document.querySelector("#list" + i);
@@ -61,7 +64,8 @@ function getRestaurantsNearMe () {
                     restaurantList.id = "restList" + i;
                     newList.append(restaurantList);
 
-
+                    
+                    
                     /* And this  block here is finally where all the list we see is created.
                     This part creates the li elements then attactes the text content pulled from the api 
                     then attacthes all that to the dynamic li element. */
@@ -69,9 +73,10 @@ function getRestaurantsNearMe () {
                     let restName = data.results[i].name;
                     let address = data.results[i].formatted_address;
                     let priceLevel = data.results[i].price_level;
-                    let rating = data.results[i].rating;
+                    let rating = data.results[i].rating; 
                     let openNow = data.results[i].opening_hours.open_now;
-
+                
+                 
                     // here is the long and lat elements but havent figured out how to save to array yet
                     let restLat = data.results[i].geometry.location.lat;
                     let restLng = data.results[i].geometry.location.lng; 
@@ -82,31 +87,37 @@ function getRestaurantsNearMe () {
                     let listRating = document.createElement("li");
                     let listOpenNow = document.createElement("li");
 
-                    listName.textContent = "Restaurant Name: " + restName;
-                    listAddress.textContent = "Restaurant Address: " + address;
+                    listName.textContent = " " + restName;
+                    listAddress.textContent = " " + address;
                     listPriceLevel.textContent = "Price Level: " + priceLevel;
-                    listRating.textContent = "Restaurant Rating: " + rating;
-                    listOpenNow.textContent = "Is Open Now: " + openNow;
+                    listRating.textContent = `Rating: ${Math.round(data.results[i].rating)}`
+                    listOpenNow.textContent = "Open: " + openNow;
+
+                  
+
 
                     theRestaurant.appendChild(listName);
                     theRestaurant.appendChild(listAddress);
                     theRestaurant.appendChild(listPriceLevel);
                     theRestaurant.appendChild(listRating);
                     theRestaurant.appendChild(listOpenNow);
+
                     
-
-            
-
                     
                }
+
+               
          }
         
+
+         
            
           })
           
         }
-      
 
+    
+        
 getUserLocation();
 
 

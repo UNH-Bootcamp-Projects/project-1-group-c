@@ -115,8 +115,6 @@
   box-shadow: none;
 }
 
-
-
 .list-group {
   margin-bottom: 1rem;
   border: 1px solid #e6e6e6;
@@ -127,116 +125,30 @@
   color: #0a0a0a;
 }
 
+li{
+  list-style: none;
+  
+}
+
 .list-group > :last-child {
   margin-bottom: 0;
 }
 
 .list-group-item {
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  width: 50%;
   padding: 1rem;
   border-bottom: 1px solid #e6e6e6;
 }
 
-.list-group-item > :last-child {
+ .list-group-item > :last-child {
   margin-bottom: 0;
   border-bottom: none;
 }
 
-.list-group-item.active {
-  color: #fefefe;
-  background-color: #1779ba;
-  border-color: 1px solid #1779ba;
-}
-
 .list-group-item:hover, .list-group-item:focus {
   background-color: #e6e6e6;
-}
-
-.list-group-item:hover.active, .list-group-item:focus.active {
-  background-color: #1779ba;
-}
-
-/* .list-group-item{
-  list-style: none;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-
-
- main {
-main {
-  display: flex;
-  flex-direction: row;
-}
-
-#searchSide {
-  border: 1px;
-  border-style: solid;
-  border-color: red;
-  width: 30%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Here in this section I added */
-#restaurantSection {
-  border: 1px;
-  border-style: solid;
-  border-color: red;
-  width: 30%;
-  height: 100vh;
-  overflow: scroll;
-  
-}
-#mapSide {
-  border: 1px;
-  border-style: solid;
-  border-color: red;
-  width: 40%;
-  height: 100vh;
-}  */
-
-
-/* This is the style that is bolding the restaurant names  I can add another class to this as well.  I can probably refractor this
-I believe I can access this by listElementClass h5 but wanted to get something to push for now because I wasnt able to last night*/
-ul h5 {
-  font-size: medium;
-  font-weight: bolder;
-}
-
-/* This one here is creating the size and style of the restaurant list elements of address price level etc.*/
-.restListClass {
-  font-size: .8rem;
-  margin-bottom: 15%;
-}
-
-/* This one here removes the dots from the bolded restaurant name. */
-.listElementClass {
-  list-style-type: none;
-  
 }
 
 
