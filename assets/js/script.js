@@ -102,7 +102,13 @@ function getRestaurantsNearMe () {
                     listAddress.textContent = " " + address;
                     listPriceLevel.textContent = "Price Level: " + priceLevel;
                     listRating.textContent = `Rating: ${Math.round(data.results[i].rating)}`
-                    listOpenNow.textContent = "Open: " + openNow;
+                    if (openNow == true) {
+                        listOpenNow.textContent = "Open Now"
+                    } else {
+                        listOpenNow.textContent = "Closed"
+                    }
+                    
+                    // listOpenNow.textContent = "Open: " + openNow;
 
                   
 
@@ -117,6 +123,11 @@ function getRestaurantsNearMe () {
                     
                }
 
+            //    if (openNow === true) {
+            //        listOpenNow.textContent = "Open Now"
+            //    } else {
+            //        listOpenNow.textContent = "Closed"
+            //    }
                
          }
         
