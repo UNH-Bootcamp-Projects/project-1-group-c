@@ -124,9 +124,10 @@
   box-shadow: none;
   color: #0a0a0a;
   width: 50%;
-  overflow: scroll;
+  overflow-y: scroll;
+  height: 600px;
+  
 }
-
 
 li{
   list-style: none;
@@ -155,6 +156,4 @@ li{
 .list-group-item:hover, .list-group-item:focus {
   background-color: #e6e6e6;
 }
-
-
 
