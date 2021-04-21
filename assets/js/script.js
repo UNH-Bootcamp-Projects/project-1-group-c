@@ -108,9 +108,7 @@ function getRestaurantsNearMe () {
                         listOpenNow.textContent = "Closed"
                     }
                     
-                    // listOpenNow.textContent = "Open: " + openNow;
-
-                  
+                    
 
 
                     theRestaurant.appendChild(listName);
@@ -123,12 +121,7 @@ function getRestaurantsNearMe () {
                     
                }
 
-            //    if (openNow === true) {
-            //        listOpenNow.textContent = "Open Now"
-            //    } else {
-            //        listOpenNow.textContent = "Closed"
-            //    }
-               
+        
          }
         
 
