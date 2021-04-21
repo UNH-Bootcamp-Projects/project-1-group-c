@@ -107,6 +107,10 @@ function getRestaurantsNearMe () {
                     } else {
                         listOpenNow.textContent = "Closed"
                     }
+
+                    if (priceLevel === undefined) {
+                        listPriceLevel.style.display = ("none");
+                    }
                     
                     
 
