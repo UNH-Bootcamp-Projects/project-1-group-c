@@ -1,15 +1,15 @@
 let map;
-//let MarkerClusterer;
 let mylat = 0;
 let mylon = 0;
+// Create an array of alphabetical characters used to label the markers.
+const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 12,
         center: { lat: mylat, lng: mylon },
     });
-    // Create an array of alphabetical characters used to label the markers.
-    const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 
     const markers = locations.map((location, i) => {
         return new google.maps.Marker({

@@ -15,9 +15,10 @@ searchButton.addEventListener("click", function (event) {
     event.preventDefault();
     userZip = $("#findlocate").val()
     userCuisine = $("#findtext").val()
+    if (userZip < 0 || userZip === "") {
+        getUserLocation()
+    }
     getRestaurantsNearMe();
-    console.log(userZip)
-
 })
 
 function getUserLocation() {
@@ -26,15 +27,11 @@ function getUserLocation() {
         .then(function (response) {
             console.log(response)
             return response.json()
-
         })
         .then(function (data) {
             console.log(data)
             userZip = data.postal_code
-            console.log(userZip)
             getRestaurantsNearMe()
-
-
         })
 }
 
@@ -47,8 +44,6 @@ function getRestaurantsNearMe() {
         restaurantUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restuarants+in+${userZip}&key=${googleApi}&`;
     }
 
-
-
     fetch(`${proxy}${restaurantUrl}`)
         .then(function (response) {
             console.log(response)
@@ -56,28 +51,20 @@ function getRestaurantsNearMe() {
         })
         .then(function (data) {
             console.log(data)
-
             $("#listRest").empty();
             locations = [];
-
             for (let i = 0; i < data.results.length; i++) {
-
                 /* with using the forloop that was already created.   I added the if statement so to 
                 account for businesses that were closed.  Reason being is that the openNow variable would
                 crash when the business is not operational.  opening_hours.open_now doesnt exist on the close 
                 businesses.*/
                 if (data.results[i].business_status === "OPERATIONAL") {
-
-
-
                     // this block here creates the li and  attaches to the empty <ul> in the html.
                     let listElement = document.createElement('li');
                     listElement.classList.add("list-group-item")
                     // listElement.classList.add("listElementClass");
                     listElement.id = "list" + i;
                     theList.appendChild(listElement);
-
-
 
                     //   this block here is what creates a dynamic ul and attaches it to the dynamic li
                     let newList = document.querySelector("#list" + i);
@@ -86,13 +73,11 @@ function getRestaurantsNearMe() {
                     restaurantList.id = "restList" + i;
                     newList.append(restaurantList);
 
-
-
                     /* And this  block here is finally where all the list we see is created.
                     This part creates the li elements then attactes the text content pulled from the api 
                     then attacthes all that to the dynamic li element. */
                     let theRestaurant = document.querySelector("#restList" + i);
-                    let restName = data.results[i].name;
+                    let restName = labels[i] + " - " + data.results[i].name;
                     let address = data.results[i].formatted_address;
                     let priceLevel = data.results[i].price_level;
                     let rating = data.results[i].rating;
@@ -114,10 +99,8 @@ function getRestaurantsNearMe() {
                     let listPriceLevel = document.createElement("li");
                     let listRating = document.createElement("li");
                     let listOpenNow = document.createElement("li");
-
                     listName.textContent = " " + restName;
                     listAddress.textContent = " " + address;
-
                     listRating.textContent = `Rating: ${rating}`
                     if (data.results[i].opening_hours) {
                         if (openNow == true) {
@@ -146,31 +129,16 @@ function getRestaurantsNearMe() {
                     }
 
                     listPriceLevel.textContent = "Price Level: " + priceLevel;
-
-
-
                     theRestaurant.appendChild(listName);
                     theRestaurant.appendChild(listAddress);
                     theRestaurant.appendChild(listPriceLevel);
                     theRestaurant.appendChild(listRating);
                     theRestaurant.appendChild(listOpenNow);
-
-
-
                 }
-
-
             }
             initMap()
-            console.log(locations)
-
-
         })
-
 }
-
-
-
 getUserLocation();
 
 
