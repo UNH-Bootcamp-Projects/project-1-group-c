@@ -124,7 +124,7 @@ li {
 .list-group-item {
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
-  width: 50%;
+  width: 100%;
   padding: 1rem;
   border-bottom: 1px solid #e6e6e6;
 }
@@ -154,8 +154,13 @@ li {
   }
 }
 
-@media screen and (max-width: 39.9375em) {
+@media screen and (max-width: 720px) {
   .hero-search-filter-form {
     width: 95%;
+  }
+  .list-group {
+    width: 100%;
+    overflow-y: scroll;
+    height: 30vh;
   }
 }
