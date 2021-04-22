@@ -1,7 +1,7 @@
 # Find Me Food Application
 ## Description
 
-description
+The Find Me Food app pulls the user's location immediately from their IP address and feeds it into Google Maps to populate a list of nearby restaurants. The app also has the ability to display a list of restaurants near an alternate zip code, as well as to filter by type of cuisine.
 
 ## Table of Contents
 
@@ -27,6 +27,7 @@ Once pulled over from gitHub onto your local machine.
 Here is a screenshot of the actual webpage.
  
  ![Screenshot](assets/images/screenshot.png)
+ ![mobile Screenshot](assets/images/mobile_screenshot.png)
 <br>
 ## Credits
 https://bootcamp.unh.edu/ 
@@ -37,7 +38,7 @@ https://choosealicense.com/
 
 
 ## Website
-https://coreynance.github.io/WeekSixAssignment/
+https://unh-bootcamp-projects.github.io/project-1-group-c/
 
 ## License
 MIT License
