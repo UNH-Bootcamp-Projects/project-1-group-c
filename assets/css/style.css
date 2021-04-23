@@ -51,12 +51,6 @@ input[type=number] {
 }
 
 
-/* .hero-search-filter-menu li a {
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-} */
-
 
 .hero-search-filter-menu a {
   color: #fefefe;
@@ -139,9 +133,6 @@ li {
 }
 
 #map {
-  /*  position: fixed !important;
-  background-color: grey;
-  width: 50%;*/
   height: 65vh;
 }
 

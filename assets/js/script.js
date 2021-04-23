@@ -3,9 +3,6 @@ let googleApi = "AIzaSyClKhFXOi6w6MwKpiSsIlmAEtkTnd9132s";
 let userZip;
 let userCuisine;
 let theList = document.querySelector("#listRest");
-let restaurant;
-let restaurantArray = []; // currently not being used
-let newArray = []; // currently not being used
 let searchButton = document.getElementById("searchButton");
 let locations = []; //Array to store the longitude and latitude of each restaurant in the list
 let restaurantUrl = '';
@@ -53,16 +50,13 @@ function getRestaurantsNearMe() {
             console.log(data)
             $("#listRest").empty();
             locations = [];
+            // loop through restaurant data  with if statement to account for closed businesses
             for (let i = 0; i < data.results.length; i++) {
-                /* with using the forloop that was already created.   I added the if statement so to 
-                account for businesses that were closed.  Reason being is that the openNow variable would
-                crash when the business is not operational.  opening_hours.open_now doesnt exist on the close 
-                businesses.*/
+              
                 if (data.results[i].business_status === "OPERATIONAL") {
                     // this block here creates the li and  attaches to the empty <ul> in the html.
                     let listElement = document.createElement('li');
-                    listElement.classList.add("list-group-item")
-                    // listElement.classList.add("listElementClass");
+                    listElement.classList.add("list-group-item");
                     listElement.id = "list" + i;
                     theList.appendChild(listElement);
 
@@ -73,9 +67,7 @@ function getRestaurantsNearMe() {
                     restaurantList.id = "restList" + i;
                     newList.append(restaurantList);
 
-                    /* And this  block here is finally where all the list we see is created.
-                    This part creates the li elements then attactes the text content pulled from the api 
-                    then attacthes all that to the dynamic li element. */
+                    // this  block here creates the restaurant list dynamically.
                     let theRestaurant = document.querySelector("#restList" + i);
                     let restName = labels[i] + " - " + data.results[i].name;
                     let address = data.results[i].formatted_address;
@@ -86,7 +78,6 @@ function getRestaurantsNearMe() {
                         openNow = data.results[i].opening_hours.open_now;
                     }
 
-                    // here is the long and lat elements but havent figured out how to save to array yet
                     let restLat = data.results[i].geometry.location.lat;
                     let restLng = data.results[i].geometry.location.lng;
 
