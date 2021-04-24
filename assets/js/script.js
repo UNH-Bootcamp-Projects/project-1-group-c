@@ -4,15 +4,25 @@ let userZip;
 let userCuisine;
 let theList = document.querySelector("#listRest");
 let searchButton = document.getElementById("searchButton");
+let modal = document.querySelector("#myModal");
+let closeButton = document.querySelector(".close");// buttons and selectors for modal
 let locations = []; //Array to store the longitude and latitude of each restaurant in the list
 let restaurantUrl = '';
+
+
+closeButton.addEventListener("click",function() {
+
+    modal.style.display ="none";             // button function for when close is clicked modal goes away.
+})
+
 
 
 searchButton.addEventListener("click", function (event) {
     event.preventDefault();
     userZip = $("#findlocate").val()
     userCuisine = $("#findtext").val()
-    if (userZip < 0 || userZip === "") {
+    if (userZip < 0 || userZip === "" || userZip.length !== 5) {
+        modal.style.display = "block";         // added to call modal when wrong zip number is entered
         getUserLocation()
     }
     getRestaurantsNearMe();
