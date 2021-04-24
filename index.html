@@ -38,20 +38,40 @@
 
     <header class="hero-search-filter">
       <div class="hero-search-filter-content">
+        <ul class="hero-search-filter-menu menu align-center">
+          <li>
+            <a href="#"><i class="fas fa-utensils" aria-hidden="true"></i> Restaurants</a>
+          </li>
+        </ul>
         <form class="hero-search-filter-form" action="">
           <label for="findtext">Find</label>
           <input id="findtext" class="hero-search-filter-form-find" type="text" placeholder="Enter Cuisine" />
           <div class="divider">&nbsp;</div>
           <label for="findlocate">Near</label>
           <input id="findlocate" class="hero-search-filter-form-near" type="number" placeholder="Enter Alt Zipcode" />
+
           <button class="button" id="searchButton"><i class="fa fa-search"></i></button>
         </form>
-
+      </div>
+      <div class="hero-search-filter-content">
         <ul class="hero-search-filter-menu menu align-center">
           <li>
-            <a href="#"><i class="fas fa-utensils" aria-hidden="true"></i> Restaurants</a>
+            <a href="#"><i class="fas fa-utensils" aria-hidden="true"></i> Search History</a>
           </li>
         </ul>
+        <form class="hero-search-filter-form" action="">
+          <label for="selecttext">Find</label>
+          <select id="selecttext" class="hero-search-filter-form-find">
+            <option value="" selected>Enter a location or select from the list...</option>
+          </select>
+          <div class="divider">&nbsp;</div>
+          <label for="selectlocate">Near</label>
+          <select id="selectlocate">
+            <option value="" selected>Enter a location or select from the list...</option>
+          </select>
+
+          <button class="button" id="historyButton"><i class="fa fa-search"></i></button>
+        </form>
       </div>
     </header>
 

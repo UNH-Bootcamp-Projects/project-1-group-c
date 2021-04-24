@@ -17,6 +17,16 @@ searchButton.addEventListener("click", function (event) {
     }
     getRestaurantsNearMe();
 })
+historyButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    userZip = $("#selectlocate").val()
+    userCuisine = $("#selecttext").val()
+    console.log(userZip)
+    if (userZip < 0 || userZip === "" || userZip === "Select a Zip Code from the list..." || userZip === null) {
+        getUserLocation()
+    }
+    getRestaurantsNearMe();
+})
 
 function getUserLocation() {
     let abstractUrl = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`
@@ -52,7 +62,7 @@ function getRestaurantsNearMe() {
             locations = [];
             // loop through restaurant data  with if statement to account for closed businesses
             for (let i = 0; i < data.results.length; i++) {
-              
+
                 if (data.results[i].business_status === "OPERATIONAL") {
                     // this block here creates the li and  attaches to the empty <ul> in the html.
                     let listElement = document.createElement('li');
@@ -128,8 +138,88 @@ function getRestaurantsNearMe() {
                 }
             }
             initMap()
+            saveZipCodeSearch()
+            saveFoodSearch()
         })
 }
+
+function saveFoodSearch() {
+    let matchFound = false
+    foodList = JSON.parse(localStorage.getItem("foodList"));
+    if (!foodList) {
+        localStorage.setItem("foodList", JSON.stringify(""));
+        foodList = []
+    }
+    if (foodList) {
+        for (let i = 0; i <= foodList.length; i++) {
+            if (foodList[i] == userCuisine) {
+                matchFound = true
+                break;
+            }
+        }
+        if (!matchFound) {
+            foodList.push(userCuisine)
+            localStorage.setItem("foodList", JSON.stringify(foodList));
+        }
+    }
+    loadFoodList()
+}
+
+
+function saveZipCodeSearch() {
+    let matchFound = false
+    zipCodeList = JSON.parse(localStorage.getItem("zipCodeList"));
+    if (!zipCodeList) {
+        localStorage.setItem("zipCodeList", JSON.stringify(""));
+        zipCodeList = []
+    }
+    if (zipCodeList) {
+        for (let i = 0; i <= zipCodeList.length; i++) {
+            if (zipCodeList[i] == userZip) {
+                matchFound = true
+                break;
+            }
+        }
+        if (!matchFound) {
+            zipCodeList.push(userZip)
+            localStorage.setItem("zipCodeList", JSON.stringify(zipCodeList));
+        }
+    }
+    loadZipCodeList()
+}
+//code to load the saved cities from localstorage into the options of the select input
+function loadFoodList() {
+    $("#selecttext").empty();
+    $('#selecttext').append($('<option value="" disabled selected >Select a Cuisine Type from the list...</option>'))
+    foodList = JSON.parse(localStorage.getItem("foodList"));
+    if (foodList) {
+        for (let i = 0; i <= foodList.length; i++) {
+            $('#selecttext').append($('<option>', {
+                value: foodList[i],
+                text: foodList[i]
+            }));
+        }
+    }
+
+};
+
+//code to load the saved cities from localstorage into the options of the select input
+function loadZipCodeList() {
+    $("#selectlocate").empty();
+    $('#selectlocate').append($('<option value="" disabled selected >Select a Zip Code from the list...</option>'))
+    zipCodeList = JSON.parse(localStorage.getItem("zipCodeList"));
+    if (zipCodeList) {
+        for (let i = 0; i <= zipCodeList.length; i++) {
+            $('#selectlocate').append($('<option>', {
+                value: zipCodeList[i],
+                text: zipCodeList[i]
+            }));
+        }
+    }
+
+};
+loadZipCodeList();
+loadFoodList();
 getUserLocation();
 
 
