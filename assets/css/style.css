@@ -51,7 +51,6 @@ input[type=number] {
 }
 
 
-
 .hero-search-filter-menu a {
   color: #fefefe;
   font-weight: bold;
@@ -100,9 +99,11 @@ input[type=number] {
   box-shadow: none;
 }
 
-/* heres the block of css for the design of the modal.   its ugly right now and not really positioned well.  just fuctional
- */
+
 .modal {
+ font-family: 'Source Code Pro', monospace;
+  text-align: center;
+  font-size: 32px;
   display: none;
   position: fixed;
   z-index: 1;
@@ -111,9 +112,11 @@ input[type=number] {
   width: 30%;
   height: 30%;
   overflow: auto;
-  background-color: rgb(0,0,0);
+  background-color: black;
   color: white;
-
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
 }
 
 .model-content{
@@ -122,22 +125,26 @@ input[type=number] {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  
 }
                          
 .close {
   color: white;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  padding: 15px;
+  border-radius: 20px;
+  border: 1px solid #888;
 }
 
-.close:hover
-.close:focus {
-  background-color: tan;
+.close:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+  background-color: grey;
   text-decoration: none;
   cursor: pointer;
 }
-/* --------------------------------Please delete comments when---------------------------------------- */
+
 
 .list-group {
   margin-bottom: 1rem;
