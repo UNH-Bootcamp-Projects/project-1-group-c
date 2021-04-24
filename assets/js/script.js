@@ -5,25 +5,24 @@ let userCuisine;
 let theList = document.querySelector("#listRest");
 let searchButton = document.getElementById("searchButton");
 let modal = document.querySelector("#myModal");
-let closeButton = document.querySelector(".close");// buttons and selectors for modal
+let closeButton = document.querySelector(".close");
 let locations = []; //Array to store the longitude and latitude of each restaurant in the list
 let restaurantUrl = '';
 
 
 closeButton.addEventListener("click",function() {
 
-    modal.style.display ="none";             // button function for when close is clicked modal goes away.
+    modal.style.display ="none";         
 })
-
-
 
 searchButton.addEventListener("click", function (event) {
     event.preventDefault();
     userZip = $("#findlocate").val()
     userCuisine = $("#findtext").val()
     if (userZip < 0 || userZip === "" || userZip.length !== 5) {
-        modal.style.display = "block";         // added to call modal when wrong zip number is entered
-        getUserLocation()
+        modal.style.display = "block"; 
+        return;        
+    
     }
     getRestaurantsNearMe();
 })
@@ -34,6 +33,7 @@ historyButton.addEventListener("click", function (event) {
     console.log(userZip)
     if (userZip < 0 || userZip === "" || userZip === "Select a Zip Code from the list..." || userZip === null) {
         getUserLocation()
+        
     }
     getRestaurantsNearMe();
 })
@@ -154,6 +154,7 @@ function getRestaurantsNearMe() {
 }
 
 function saveFoodSearch() {
+
     let matchFound = false
     foodList = JSON.parse(localStorage.getItem("foodList"));
     if (!foodList) {
@@ -177,6 +178,7 @@ function saveFoodSearch() {
 
 
 function saveZipCodeSearch() {
+
     let matchFound = false
     zipCodeList = JSON.parse(localStorage.getItem("zipCodeList"));
     if (!zipCodeList) {
@@ -195,6 +197,7 @@ function saveZipCodeSearch() {
             localStorage.setItem("zipCodeList", JSON.stringify(zipCodeList));
         }
     }
+
     loadZipCodeList()
 }
 //code to load the saved cities from localstorage into the options of the select input
